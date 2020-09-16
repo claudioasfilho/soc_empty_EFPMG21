@@ -1,0 +1,43 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+package: Bluetooth
+configuration:
+- {name: SL_STACK_SIZE, value: '2048'}
+- {name: SL_HEAP_SIZE, value: '8630'}
+description: |
+  This example demonstrates the bare minimum needed for a Bluetooth C application that allows Over-the-Air Device Firmware Upgrading (OTA DFU). The application starts advertising after boot and restarts advertising after a connection is closed.
+label: soc_empty
+source:
+- {path: main.c}
+- {path: app.c}
+- {path: app_properties.c}
+project_name: soc_empty
+quality: production
+component:
+- {id: brd4001a}
+- {id: mpu}
+- instance: [efp0]
+  id: efp_driver
+- {id: component_catalog}
+- {id: ota_dfu}
+- {id: brd4179b}
+- {id: bootloader_interface}
+- {id: rail_util_pti}
+- {id: app_assert}
+- {id: bluetooth}
+- {id: EFR32MG21A010F1024IM32}
+other_file:
+- {path: create_bl_files.bat}
+- {path: create_bl_files.sh}
+tag: ['hardware:rf:band:2400']
+category: Bluetooth Examples
+toolchain_settings: []
+config_file:
+- path: ../../../../../Applications/SimplicityStudio5.app/Contents/Eclipse/developer/sdks/gecko_sdk_suite/v3.0/app/bluetooth/example/soc_empty/gatt_configuration.btconf
+  override: {component: gatt_configuration, file_id: gatt_configuration_file_id}
+  directory: btconf
+ui_hints: {}
+
